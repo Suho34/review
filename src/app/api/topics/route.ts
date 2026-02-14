@@ -52,19 +52,22 @@ export async function POST(request: Request) {
         { status: 400 },
       );
     }
+
+    await connectDB();
     const newTopic = await LearningEntry.create({
       userId: session.user.id,
       topic,
       notes,
       difficulty,
       lastReviewed: new Date(),
-      nextReviewDate: calculateNextReviewDate(difficulty),
+      nextReviewAt: calculateNextReviewDate(difficulty),
     });
     return NextResponse.json(
       { topic: newTopic, success: true },
       { status: 201 },
     );
-  } catch {
+  } catch (error) {
+    console.error("error:", error);
     return NextResponse.json(
       { error: "Failed to create topic", success: false },
       { status: 500 },
