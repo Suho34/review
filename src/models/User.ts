@@ -13,6 +13,14 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    streak: {
+      type: Number,
+      default: 0,
+    },
+    lastStudyDate: {
+      type: Date,
+      default: null,
+    },
   },
   {
     timestamps: true,

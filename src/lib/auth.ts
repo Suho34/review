@@ -3,13 +3,38 @@ import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 
 const client = new MongoClient(process.env.MONGODB_URI as string);
-const db = client.db();
+
+// Singleton pattern for MongoDB client to prevent multiple connections in dev
+let dbClient: MongoClient;
+
+if (process.env.NODE_ENV === "development") {
+  if (!(global as any)._mongoClient) {
+    (global as any)._mongoClient = client;
+  }
+  dbClient = (global as any)._mongoClient;
+} else {
+  dbClient = client;
+}
+
+const db = dbClient.db();
 
 export const auth = betterAuth({
   database: mongodbAdapter(db, {
-    // Optional: if you don't provide a client, database transactions won't be enabled.
-    client,
+    client: dbClient,
   }),
+
+  user: {
+    additionalFields: {
+      streak: {
+        type: "number",
+        defaultValue: 0,
+      },
+      lastStudyDate: {
+        type: "date",
+        required: false,
+      },
+    },
+  },
 
   emailAndPassword: {
     enabled: true,
