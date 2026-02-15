@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Review - Intelligent Learning Companion
+
+Review is a modern, AI-powered learning management application designed to help you master new topics through spaced repetition, interactive quizzes, and intelligent insights.
+
+## Features
+
+### 🧠 Smart Learning
+*   **Spaced Repetition**: Automatically schedules reviews based on your performance (Easy, Medium, Hard).
+*   **Streak Tracking**: Keeps you motivated by tracking daily learning activity.
+*   **Topic Management**: Organize your learning notes and track progress per topic.
+
+### 🤖 AI-Powered Integations
+*   **AI Quiz Generator**: Generate quizzes on any topic to test your knowledge.
+*   **Specialist Agent**: Deep-dive into complex topics with a dedicated AI tutor that diagnoses your understanding.
+*   **Strategist Insights**: Get personalized advice on what to study next based on your weak areas.
+
+### 🛠️ Tech Stack
+*   **Framework**: Next.js 15 (App Router)
+*   **Language**: TypeScript
+*   **Styling**: Tailwind CSS & Shadcn UI
+*   **Database**: MongoDB (Mongoose & Native Driver)
+*   **Authentication**: Better-Auth
+*   **AI**: Gemini / Google Generative AI
 
 ## Getting Started
 
-First, run the development server:
+1.  **Clone the repository**
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
+3.  **Configure Environment**:
+    Copy `.env.example` to `.env` and fill in your API keys:
+    ```bash
+    cp .env.example .env
+    ```
+4.  **Run the development server**:
+    ```bash
+    npm run dev
+    ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Open [http://localhost:3000](http://localhost:3000) with your browser to start learning!
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*   `src/app`: App router pages and API routes.
+*   `src/components/ui`: Reusable UI components (Shadcn).
+*   `src/components/ai-elements`: AI-specific UI components (Chat, Terminal, etc.).
+*   `src/lib`: Utility functions, database connection, and auth setup.
+*   `src/models`: Mongoose schemas.
