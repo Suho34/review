@@ -11,7 +11,7 @@ import {
     Loader2,
     Lightbulb,
 } from "lucide-react";
-import { Shell } from "@/components/layout/Shell";
+
 import {
     Card,
     CardContent,
@@ -25,6 +25,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
+import { getDifficultyColor } from "@/lib/utils";
 
 // Define the form data structure
 interface TopicFormData {
@@ -123,32 +124,30 @@ export default function AddTopicPage() {
 
     if (success) {
         return (
-            <Shell>
-                <div className="flex items-center justify-center min-h-[60vh]">
-                    <Card className="max-w-md w-full border-emerald-500/20 bg-emerald-50/50 dark:bg-emerald-900/10">
-                        <CardContent className="pt-6 text-center space-y-4">
-                            <div className="mx-auto w-12 h-12 bg-emerald-100 dark:bg-emerald-900 rounded-full flex items-center justify-center">
-                                <Check className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
-                            </div>
-                            <h2 className="text-2xl font-bold text-emerald-700 dark:text-emerald-400">
-                                Topic Created!
-                            </h2>
-                            <p className="text-muted-foreground">
-                                Redirecting you to the dashboard...
-                            </p>
-                            <div className="h-1 w-full bg-emerald-200 dark:bg-emerald-800 rounded-full overflow-hidden">
-                                <div className="h-full bg-emerald-500 animate-[pulse_1s_ease-in-out_infinite]" />
-                            </div>
-                        </CardContent>
-                    </Card>
-                </div>
-            </Shell>
+            <div className="flex items-center justify-center min-h-[60vh] flex-1 flex-col p-4">
+                <Card className="max-w-md w-full border-emerald-500/20 bg-emerald-50/50 dark:bg-emerald-900/10">
+                    <CardContent className="pt-6 text-center space-y-4">
+                        <div className="mx-auto w-12 h-12 bg-emerald-100 dark:bg-emerald-900 rounded-full flex items-center justify-center">
+                            <Check className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
+                        </div>
+                        <h2 className="text-2xl font-bold text-emerald-700 dark:text-emerald-400">
+                            Topic Created!
+                        </h2>
+                        <p className="text-muted-foreground">
+                            Redirecting you to the dashboard...
+                        </p>
+                        <div className="h-1 w-full bg-emerald-200 dark:bg-emerald-800 rounded-full overflow-hidden">
+                            <div className="h-full bg-emerald-500 animate-[pulse_1s_ease-in-out_infinite]" />
+                        </div>
+                    </CardContent>
+                </Card>
+            </div>
         );
     }
 
     return (
-        <Shell>
-            <div className="max-w-2xl mx-auto space-y-6">
+        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+            <div className="max-w-2xl mx-auto space-y-6 w-full">
                 <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                     <Link
                         href="/topics"
@@ -215,7 +214,7 @@ export default function AddTopicPage() {
                       `}
                                             onClick={() => setDifficulty(level)}
                                         >
-                                            <Badge variant={level} className="mb-2 capitalize">
+                                            <Badge variant={getDifficultyColor(level)} className="mb-2 capitalize">
                                                 {level}
                                             </Badge>
                                             <span className="text-xs text-muted-foreground text-center">
@@ -292,6 +291,6 @@ export default function AddTopicPage() {
                     </form>
                 </Card>
             </div>
-        </Shell>
+        </div>
     );
 }
