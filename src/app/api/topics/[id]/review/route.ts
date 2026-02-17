@@ -118,6 +118,7 @@ export async function PATCH(
     // We update the user streak *after* the topic is saved to ensure the review counts.
     // If this fails, it's not critical to the review itself, but we log the error.
     try {
+
       const user = await User.findById(session.user.id);
 
       if (user) {
