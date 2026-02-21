@@ -38,6 +38,16 @@ const LearningEntrySchema = new Schema(
       type: Date,
       required: true,
     },
+
+    consecutiveStruggles: {
+      type: Number,
+      default: 0,
+    },
+
+    totalReviews: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     timestamps: true,
